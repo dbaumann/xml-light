@@ -13,8 +13,10 @@
     <xs:element name=\"envelope\">
       <xs:complexType>
         <xs:sequence>
-          <xs:element name=\"name\" type=\"xs:string\" minOccurs=\"0\" maxOccurs=\"1\"/>
-          <xs:element name=\"accounts\" type=\"xs:string\" minOccurs=\"0\" maxOccurs=\"unbounded\"/>
+          <xs:choice minOccurs=\"1\" maxOccurs=\"unbounded\">
+            <xs:element name=\"name\" type=\"xs:string\" minOccurs=\"1\" maxOccurs=\"1\"/>
+            <xs:element name=\"accounts\" type=\"xs:string\" minOccurs=\"2\" maxOccurs=\"2\"/>
+          </xs:choice>
         </xs:sequence>
       </xs:complexType>
     </xs:element>
@@ -25,7 +27,8 @@
 
 (deftest test-generate-string
   (testing "produces valid xml"
-    (is (is-valid-xml? (generate-string fixture)))))
+    (is (not (instance? clj_xml_validation.core.ValidationFailureResult
+                        (is-valid-xml? (generate-string fixture)))))))
 
 (deftest test-parse-string
   (testing "parses output xml into the same structure"

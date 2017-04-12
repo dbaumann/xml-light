@@ -1,4 +1,4 @@
-(defproject xml-light "1.0.0"
+(defproject xml-light "0.1.1"
   :description "A minimal XML parser and printer for Clojure."
   :url "https://github.com/dbaumann/xml-light"
   :license {:name "Eclipse Public License"
